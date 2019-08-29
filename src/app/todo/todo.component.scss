@@ -42,6 +42,21 @@
     .create-new-todo {
         padding-top: 2.5em;
         .section {
+            .breadcrumbs {
+                margin: 1.5em 0;
+                display: flex;
+                justify-content: space-around;
+                & > div {
+                    padding: 1em 5em;
+                    border: 1px solid #CF95E8;
+                    border-radius: 50px;
+                    color: #CF95E8;
+                    &.active {
+                        background-color: #3F0063;
+                        color: #ffffff;
+                    }
+                }
+            }
             .form-group {
                 margin: 1em;
                 .custom-input {
