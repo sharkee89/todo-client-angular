@@ -49,10 +49,8 @@ export class TodoComponent implements OnInit {
   saveTodo(newTodo: any): void {
     this._todoService.saveTodo(newTodo)
       .subscribe((res) => {
+        this.initTodoList();
         this.newTodo = this._todoService.getDefaultTodo();
-        this.todoList = res;
-        console.log(res);
-        console.log(this.todoList);
         this.step = 0;
         this.isCreateStart = false;
       });
@@ -60,13 +58,13 @@ export class TodoComponent implements OnInit {
 
   removeTodo(id: number): void {
     this.dialogService.addDialog(ConfirmModalComponent, {
-      title: 'Delete Saving',
-      question: 'Are you sure you want to remove saving?'
+      title: 'Delete Todo',
+      question: 'Are you sure you want to remove todo?'
     }).subscribe((result) => {
       if (result) {
         this._todoService.removeTodo(id)
           .subscribe((res) => {
-            this.todoList = res;
+            this.initTodoList();
           });
       }
     });
@@ -84,7 +82,7 @@ export class TodoComponent implements OnInit {
         if (result) {
           this._todoService.updateTodo(result)
             .subscribe((res) => {
-              this.todoList = res;
+              this.initTodoList();
             })
         }
       });

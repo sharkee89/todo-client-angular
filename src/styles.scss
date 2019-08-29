@@ -1,1 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #CF95E8;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+    color: #3F0063;
+    h3, h4, label {
+        color: #3F0063;  
+    }
+    .button {
+        border: none;
+        color: #ffffff;
+        padding: 0.5em 3em;
+    }
+    .btn-first {
+        background-color: #3F0063;
+        border-bottom: 1px solid #CF95E8;
+        &:hover {
+            background-color: #E81B52;
+        }
+    }
+    .btn-second {
+        background-color: #FF7749;
+        border-bottom: 1px solid #3F0063;
+        &:hover {
+            background-color: #E81B52;
+        }
+    }
+    textarea {
+        &.custom-input {
+            border: 1px solid #CF95E8;
+        }
+    }
+    .custom-input {
+        margin-bottom: 1.5em;
+        background: transparent;
+        color: #3f0063;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #CF95E8;
+        outline: none;
+        display: block;
+        padding: 5px 10px;
+    }
+    .modal-content {
+        background-color: #FFF0BA;
+        border: 1px solid #3F0063;
+        border-radius: 0;
+        .modal-body {
+            color: #3F0063;
+        }
+    }
+    .modal.fade {
+        background-color: rgba(63, 0, 99, .5);
+    }
+}

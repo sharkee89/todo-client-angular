@@ -2,39 +2,39 @@
     <div class="row">
         <div class="col-md-6">
             <h3>Todo list</h3>
-            <input [(ngModel)]="titleFilterValue" type="text" class="form-control" placeholder="Filter todos by filter">
+            <input [(ngModel)]="titleFilterValue" type="text" class="custom-input filter-input" placeholder="Filter todos by title">
             <div class="row">
                 <div *ngFor="let todo of todoList | title: titleFilterValue" class="card col-md-4">
                     <div class="card-body">
-                        <div class="remove-icon"><a href="#" (click)="removeTodo(todo.id)">x</a></div>
+                        <div class="remove-icon"><a href="#" (click)="removeTodo(todo['_id'])">x</a></div>
                         <h5 class="card-title">{{todo.title}}</h5>
                         <p class="card-text">{{todo.description}}</p>
                         <p class="card-text todo-date">{{todo.date | date}}</p>
-                        <a href="#" (click)="startUpdateTodo(todo)" class="btn btn-primary">Edit</a>
+                        <button (click)="startUpdateTodo(todo)" class="button btn-second">Edit</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 create-new-todo">
             <div class="section">
-                <button (click)="startNewTodo()" class="btn btn-success">Create new Todo</button>
+                <button (click)="startNewTodo()" class="button btn-first">Create new Todo</button>
                 <form *ngIf="isCreateStart">
-                    <div *ngIf="step === 0" class="form-group">
+                    <div *ngIf="step >= 0" class="form-group">
                         <label for="title">Enter title</label>
-                        <input [(ngModel)]="newTodo.title" name="title" type="text" class="form-control" id="title" placeholder="Enter title">
-                        <button (click)="changeStep(1)" class="btn btn-primary">Next</button>
+                        <input [(ngModel)]="newTodo.title" name="title" type="text" class="custom-input" id="title">
+                        <button (click)="changeStep(1)" *ngIf="step === 0" class="button btn-first">Next</button>
                     </div>
-                    <div *ngIf="step === 1" class="form-group">
+                    <div *ngIf="step >= 1" class="form-group">
                         <label for="description">Description</label>
-                        <textarea [(ngModel)]="newTodo.description" name="description" type="text" class="form-control" id="description" placeholder="Enter description"></textarea>
-                        <button (click)="changeStep(-1)" class="btn btn-primary">Back</button>
-                        <button (click)="changeStep(1)" class="btn btn-primary">Next</button>
+                        <textarea [(ngModel)]="newTodo.description" name="description" type="text" class="custom-input" id="description"></textarea>
+                        <button (click)="changeStep(-1)" *ngIf="step === 1" class="button btn-second">Back</button>
+                        <button (click)="changeStep(1)" *ngIf="step === 1" class="button btn-first">Next</button>
                     </div>
-                    <div *ngIf="step === 2" class="form-group">
+                    <div *ngIf="step >= 2" class="form-group">
                         <label for="title">Enter date</label>
-                        <input [(ngModel)]="newTodo.date" name="date" type="date" class="form-control" id="date" placeholder="Enter date">
-                        <button (click)="changeStep(-1)" class="btn btn-primary">Back</button>
-                        <button (click)="saveTodo(newTodo)" class="btn btn-primary">Next</button>
+                        <input [(ngModel)]="newTodo.date" name="date" type="date" class="custom-input" id="date">
+                        <button (click)="changeStep(-1)" *ngIf="step === 2" class="button btn-second">Back</button>
+                        <button (click)="saveTodo(newTodo)" *ngIf="step === 2" class="button btn-first">Next</button>
                     </div>
                 </form>
             </div>
