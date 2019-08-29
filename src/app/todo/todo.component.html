@@ -25,13 +25,15 @@
                 </div>
                 <form *ngIf="isCreateStart">
                     <div *ngIf="step >= 0" class="form-group">
-                        <input [(ngModel)]="newTodo.title" name="title" type="text" class="custom-input" id="title" placeholder="Enter title">
+                        <input [(ngModel)]="newTodo.title" name="title" type="text" class="custom-input" id="title" placeholder="Enter title" (input)="onRequiredChange('title', $event.target.value)">
+                        <p *ngIf="required.title" class="error-msg">Title is required</p>
                         <div class="bn-btns">
                             <button (click)="changeStep(1)" *ngIf="step === 0" class="button btn-first">Next</button>
                         </div>
                     </div>
                     <div *ngIf="step >= 1" class="form-group">
-                        <textarea [(ngModel)]="newTodo.description" name="description" type="text" class="custom-input" id="description" placeholder="Enter description"></textarea>
+                        <textarea [(ngModel)]="newTodo.description" name="description" type="text" class="custom-input" id="description" placeholder="Enter description" (input)="onRequiredChange('desc', $event.target.value)"></textarea>
+                        <p *ngIf="required.desc" class="error-msg">Description is required</p>
                         <div class="bn-btns">
                             <button (click)="changeStep(-1)" *ngIf="step === 1" class="button btn-second">Back</button>
                             <button (click)="changeStep(1)" *ngIf="step === 1" class="button btn-first">Next</button>
@@ -39,7 +41,8 @@
                     </div>
                     <div *ngIf="step >= 2" class="form-group">
                         <label for="title">Enter date</label>
-                        <input [(ngModel)]="newTodo.date" name="date" type="date" class="custom-input" id="date" placeholder="Enter date">
+                        <input [(ngModel)]="newTodo.date" name="date" type="date" class="custom-input" id="date" placeholder="Enter date" (input)="onRequiredChange('date', $event.target.value)">
+                        <p *ngIf="required.date" class="error-msg">Date is required</p>
                         <div class="bn-btns">
                             <button (click)="changeStep(-1)" *ngIf="step === 2" class="button btn-second">Back</button>
                             <button (click)="saveTodo(newTodo)" *ngIf="step === 2" class="button btn-first">Next</button>

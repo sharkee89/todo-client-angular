@@ -46,7 +46,7 @@ body {
     }
     .custom-input {
         margin-top: 1em;
-        margin-bottom: 1.5em;
+        margin-bottom: .5em;
         background: transparent;
         color: #3f0063;
         width: 100%;
@@ -66,5 +66,8 @@ body {
     }
     .modal.fade {
         background-color: rgba(63, 0, 99, .5);
+    }
+    button:disabled, button[disabled]{
+        opacity: .3;
     }
 }

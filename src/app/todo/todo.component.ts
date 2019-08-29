@@ -17,6 +17,11 @@ export class TodoComponent implements OnInit {
   step: number;
   newTodo: Todo;
   titleFilterValue: string;
+  required = {
+    title: false,
+    desc: false,
+    date: false,
+  };
 
   constructor(
     private todoService: TodoService,
@@ -47,6 +52,10 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodo(newTodo: any): void {
+    if (!newTodo.date) {
+      this.required.date = true;
+      return;
+    }
     this.todoService.saveTodo(newTodo)
       .subscribe((res) => {
         this.initTodoList();
@@ -79,7 +88,6 @@ export class TodoComponent implements OnInit {
     const prefixMonth = tempDate.getMonth() + 1 < 10 ? '0' : '';
     const prefixDay = tempDate.getDate()< 10 ? '0' : '';
     todo.date = `${tempDate.getFullYear()}-${prefixMonth}${tempDate.getMonth() + 1}-${prefixDay}${tempDate.getDate()}`;
-    console.log(todo.date);
     this.dialogService.addDialog(EditTodoModalComponent, {
       updateTodo: todo
     })
@@ -94,7 +102,21 @@ export class TodoComponent implements OnInit {
   }
 
   changeStep(progress: number): void {
+    if (progress === 1) {
+      if (this.step === 0 && !this.newTodo.title) {
+        this.required.title = true;
+        return;
+      }
+      if (this.step === 1 && !this.newTodo.description) {
+        this.required.desc = true;
+        return;
+      }
+    }
     this.step += progress;
+  }
+
+  onRequiredChange(prop: string, value: string): void {  
+    this.required[prop] = !value
   }
 
 }
