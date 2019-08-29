@@ -1,0 +1,19 @@
+.modal-dialog {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) !important;
+}
+.modal-header {
+    color: #ffffff;
+}
+.modal-header button {
+    color: #ffffff;
+    transition: 0.3s ease-in;
+}
+/* Media Queries */
+@media only screen and (max-width: 991px) {
+    .modal-dialog {
+        width: 90%;
+    }
+}
