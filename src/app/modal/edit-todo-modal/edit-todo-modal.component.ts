@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 import { Todo } from 'src/app/todo/todo.model';
-import { TodoService } from 'src/app/todo/todo.service';
 
 export interface EditTodoModalModel {
-  updateTodo: Todo
+  updateTodo: Todo;
 }
 
 @Component({
@@ -18,8 +17,7 @@ export class EditTodoModalComponent extends DialogComponent<EditTodoModalModel, 
   tempTodo: Todo;
 
   constructor(
-    dialogService: DialogService,
-    private _todoService: TodoService
+    dialogService: DialogService
   ) {
     super(dialogService);
   }

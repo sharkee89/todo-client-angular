@@ -19,7 +19,7 @@ export class TodoComponent implements OnInit {
   titleFilterValue: string;
 
   constructor(
-    private _todoService: TodoService,
+    private todoService: TodoService,
     private dialogService: DialogService
   ) { }
 
@@ -35,22 +35,22 @@ export class TodoComponent implements OnInit {
   initConfiguration(): void {
     this.isCreateStart = false;
     this.step = 0;
-    this.newTodo = this._todoService.getDefaultTodo();
+    this.newTodo = this.todoService.getDefaultTodo();
     this.titleFilterValue = '';
   }
 
   initTodoList(): void {
-    this._todoService.getTodoList()
+    this.todoService.getTodoList()
       .subscribe((res) => {
         this.todoList = res;
-      })
+      });
   }
 
   saveTodo(newTodo: any): void {
-    this._todoService.saveTodo(newTodo)
+    this.todoService.saveTodo(newTodo)
       .subscribe((res) => {
         this.initTodoList();
-        this.newTodo = this._todoService.getDefaultTodo();
+        this.newTodo = this.todoService.getDefaultTodo();
         this.step = 0;
         this.isCreateStart = false;
       });
@@ -62,7 +62,7 @@ export class TodoComponent implements OnInit {
       question: 'Are you sure you want to remove todo?'
     }).subscribe((result) => {
       if (result) {
-        this._todoService.removeTodo(id)
+        this.todoService.removeTodo(id)
           .subscribe((res) => {
             this.initTodoList();
           });
@@ -80,10 +80,10 @@ export class TodoComponent implements OnInit {
     })
       .subscribe((result) => {
         if (result) {
-          this._todoService.updateTodo(result)
+          this.todoService.updateTodo(result)
             .subscribe((res) => {
               this.initTodoList();
-            })
+            });
         }
       });
   }

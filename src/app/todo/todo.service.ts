@@ -37,7 +37,7 @@ export class TodoService {
   }
 
   updateTodo(newTodo: Todo): Observable<Array<Todo>> {
-    return this.http.patch<Array<Todo>>(`${this.TODO_SERVICE_URL}/${newTodo['_id']}`, newTodo)
+    return this.http.patch<Array<Todo>>(`${this.TODO_SERVICE_URL}/${newTodo._id}`, newTodo)
       .pipe(
         map(response => {
           return response;
@@ -59,6 +59,6 @@ export class TodoService {
       title: '',
       description: '',
       date: null
-    }
+    };
   }
 }
