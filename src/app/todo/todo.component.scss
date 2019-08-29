@@ -1,5 +1,5 @@
 .container-fluid {
-    padding: 5em;
+    padding: 1em 3em;
     .filter-input {
         width: initial;
         &:focus {
@@ -45,11 +45,10 @@
             .breadcrumbs {
                 margin: 1.5em 0;
                 display: flex;
-                justify-content: space-around;
+                justify-content: space-between;
                 & > div {
-                    padding: 1em 5em;
+                    padding: 1em;
                     border: 1px solid #CF95E8;
-                    border-radius: 50px;
                     color: #CF95E8;
                     &.active {
                         background-color: #3F0063;
