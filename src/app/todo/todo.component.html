@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-7">
             <h3 class="title">Todo list</h3>
             <input [(ngModel)]="titleFilterValue" type="text" class="custom-input filter-input" placeholder="Filter todos by title">
             <div class="row">
@@ -15,9 +15,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 create-new-todo">
+        <div class="col-lg-5 create-new-todo">
             <div class="section">
-                <button (click)="startNewTodo()" class="button btn-first">Create new Todo</button>
+                <button (click)="startNewTodo()" class="button btn-first cnt-btn">Create new Todo</button>
                 <div class="breadcrumbs">
                     <div [ngClass]="{'active': step >= 0 && isCreateStart}">Title</div>
                     <div [ngClass]="{'active': step >= 1 && isCreateStart}">Description</div>
@@ -26,18 +26,24 @@
                 <form *ngIf="isCreateStart">
                     <div *ngIf="step >= 0" class="form-group">
                         <input [(ngModel)]="newTodo.title" name="title" type="text" class="custom-input" id="title" placeholder="Enter title">
-                        <button (click)="changeStep(1)" *ngIf="step === 0" class="button btn-first">Next</button>
+                        <div class="bn-btns">
+                            <button (click)="changeStep(1)" *ngIf="step === 0" class="button btn-first">Next</button>
+                        </div>
                     </div>
                     <div *ngIf="step >= 1" class="form-group">
                         <textarea [(ngModel)]="newTodo.description" name="description" type="text" class="custom-input" id="description" placeholder="Enter description"></textarea>
-                        <button (click)="changeStep(-1)" *ngIf="step === 1" class="button btn-second">Back</button>
-                        <button (click)="changeStep(1)" *ngIf="step === 1" class="button btn-first">Next</button>
+                        <div class="bn-btns">
+                            <button (click)="changeStep(-1)" *ngIf="step === 1" class="button btn-second">Back</button>
+                            <button (click)="changeStep(1)" *ngIf="step === 1" class="button btn-first">Next</button>
+                        </div>
                     </div>
                     <div *ngIf="step >= 2" class="form-group">
                         <label for="title">Enter date</label>
                         <input [(ngModel)]="newTodo.date" name="date" type="date" class="custom-input" id="date" placeholder="Enter date">
-                        <button (click)="changeStep(-1)" *ngIf="step === 2" class="button btn-second">Back</button>
-                        <button (click)="saveTodo(newTodo)" *ngIf="step === 2" class="button btn-first">Next</button>
+                        <div class="bn-btns">
+                            <button (click)="changeStep(-1)" *ngIf="step === 2" class="button btn-second">Back</button>
+                            <button (click)="saveTodo(newTodo)" *ngIf="step === 2" class="button btn-first">Next</button>
+                        </div>
                     </div>
                 </form>
             </div>
