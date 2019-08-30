@@ -14,6 +14,9 @@ export class TodoComponent implements OnInit {
 
   todoList: Array<any>;
   isCreateStart: boolean;
+  isListLoaded: boolean;
+  isListSuccess: boolean;
+  isAddTodoError: boolean;
   step: number;
   newTodo: Todo;
   titleFilterValue: string;
@@ -39,15 +42,24 @@ export class TodoComponent implements OnInit {
 
   initConfiguration(): void {
     this.isCreateStart = false;
+    this.isListLoaded = false;
+    this.isListSuccess = false;
+    this.isAddTodoError = false;
     this.step = 0;
     this.newTodo = this.todoService.getDefaultTodo();
     this.titleFilterValue = '';
   }
 
   initTodoList(): void {
+    this.isListLoaded = false;
     this.todoService.getTodoList()
       .subscribe((res) => {
         this.todoList = res;
+        this.isListLoaded = true;
+        this.isListSuccess = true;
+      }, () => {
+        this.isListLoaded = true;
+        this.isListSuccess = false;
       });
   }
 
@@ -62,6 +74,9 @@ export class TodoComponent implements OnInit {
         this.newTodo = this.todoService.getDefaultTodo();
         this.step = 0;
         this.isCreateStart = false;
+        this.isAddTodoError = false;
+      }, () => {
+        this.isAddTodoError = true;
       });
   }
 
@@ -96,6 +111,9 @@ export class TodoComponent implements OnInit {
           this.todoService.updateTodo(result)
             .subscribe((res) => {
               this.initTodoList();
+              this.isListSuccess = true;
+            }, () => {
+              this.isListSuccess = false;
             });
         }
       });

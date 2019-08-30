@@ -70,4 +70,9 @@ body {
     button:disabled, button[disabled]{
         opacity: .3;
     }
+    .global-err {
+        background-color: #E81B52;
+        color: #ffffff;
+        padding: .5em 1em;
+    }
 }
