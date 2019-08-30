@@ -26,4 +26,16 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('todo-app');
   });
 
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.fix-image').textContent).toBeDefined();
+    expect(compiled.querySelector('.fix-image .first').textContent).toBeDefined();
+    expect(compiled.querySelector('.fix-image .second').textContent).toBeDefined();
+    expect(compiled.querySelector('.fix-image .third').textContent).toBeDefined();
+    expect(compiled.querySelector('.fix-image .fourth').textContent).toBeDefined();
+    expect(compiled.querySelector('.fix-image .fifth').textContent).toBeDefined();
+  });
+
 });
