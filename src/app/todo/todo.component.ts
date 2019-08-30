@@ -86,7 +86,7 @@ export class TodoComponent implements OnInit {
   startUpdateTodo(todo: Todo): void {
     const tempDate = new Date(todo.date);
     const prefixMonth = tempDate.getMonth() + 1 < 10 ? '0' : '';
-    const prefixDay = tempDate.getDate()< 10 ? '0' : '';
+    const prefixDay = tempDate.getDate() < 10 ? '0' : '';
     todo.date = `${tempDate.getFullYear()}-${prefixMonth}${tempDate.getMonth() + 1}-${prefixDay}${tempDate.getDate()}`;
     this.dialogService.addDialog(EditTodoModalComponent, {
       updateTodo: todo
@@ -115,8 +115,8 @@ export class TodoComponent implements OnInit {
     this.step += progress;
   }
 
-  onRequiredChange(prop: string, value: string): void {  
-    this.required[prop] = !value
+  onRequiredChange(prop: string, value: string): void {
+    this.required[prop] = !value;
   }
 
 }

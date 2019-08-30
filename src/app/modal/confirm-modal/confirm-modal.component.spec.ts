@@ -24,4 +24,10 @@ describe('ConfirmModalComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should apply correctly', () => {
+    spyOn(component, 'close');
+    component.apply();
+    expect(component.close).toHaveBeenCalled();
+  });
 });

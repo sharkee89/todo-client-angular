@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 
 class TodoServiceStub {
-  constructor(){}
+  constructor() {}
 
-  getTodoList() { return of({});}
+  getTodoList() { return of({}); }
 }
 
 describe('TodoComponent', () => {
@@ -28,10 +28,10 @@ describe('TodoComponent', () => {
 
   mockedTodoService = {
     getTodoList: () => {
-      return of([])
+      return of([]);
     },
     getDefaultTodo: () => {
-      return 
+      return defaultTodo;
     },
     saveTodo: () => {
       return of({
@@ -46,13 +46,13 @@ describe('TodoComponent', () => {
         id: '123'
       });
     },
-  }
+  };
 
   mockedDialogService = {
     addDialog: () => {
-      return of(true)
+      return of(true);
     }
-  }
+  };
 
   beforeEach(async(() => {
     spyOn(mockedTodoService, 'getTodoList').and.returnValue(of([]));
@@ -107,7 +107,7 @@ describe('TodoComponent', () => {
   });
 
   it('should saveTodo correctly', () => {
-    let newTodo = {title: '', description: '', date: null};
+    const newTodo = {title: '', description: '', date: null};
     component.saveTodo(newTodo);
     expect(component.required.date).toBeTruthy();
     component.required.date = false;
@@ -137,7 +137,7 @@ describe('TodoComponent', () => {
       title: '',
       description: '',
       date: ''
-    }
+    };
     component.step = 0;
     component.changeStep(1);
     expect(component.required.title).toBeTruthy();
@@ -146,7 +146,6 @@ describe('TodoComponent', () => {
     component.changeStep(1);
     expect(component.required.title).toBeFalsy();
     expect(component.step).toEqual(1);
-    
     component.changeStep(1);
     expect(component.required.desc).toBeTruthy();
     component.required.desc = false;

@@ -25,9 +25,9 @@ export class EditTodoModalComponent extends DialogComponent<EditTodoModalModel, 
   ) {
     super(dialogService);
     this.editTodoForm = fb.group({
-        'title': ["", Validators.required],
-        'description': ["", Validators.required],
-        'date': ["", Validators.required]
+        title: ['', Validators.required],
+        description: ['', Validators.required],
+        date: ['', Validators.required]
     });
   }
 
