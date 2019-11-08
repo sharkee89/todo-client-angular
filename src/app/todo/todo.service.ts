@@ -27,8 +27,8 @@ export class TodoService {
       );
   }
 
-  saveTodo(newTodo: Todo): Observable<Array<Todo>> {
-    return this.http.post<Array<Todo>>(this.TODO_SERVICE_URL, newTodo)
+  saveTodo(newTodo: Todo): Observable<any> {
+    return this.http.post<any>(this.TODO_SERVICE_URL, newTodo)
       .pipe(
         map(response => {
           return response;
@@ -45,7 +45,7 @@ export class TodoService {
       );
   }
 
-  removeTodo(id: number): Observable<Array<Todo>> {
+  removeTodo(id: string): Observable<Array<Todo>> {
     return this.http.delete<Array<Todo>>(`${this.TODO_SERVICE_URL}/${id}`)
       .pipe(
         map(response => {

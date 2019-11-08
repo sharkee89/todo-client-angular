@@ -4,11 +4,13 @@ import { DialogService } from 'ng2-bootstrap-modal';
 import { ConfirmModalComponent } from '../modal/confirm-modal/confirm-modal.component';
 import { Todo } from './todo.model';
 import { EditTodoModalComponent } from '../modal/edit-todo-modal/edit-todo-modal.component';
+import { fadeAnimation } from '../animations/fade-animation';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  styleUrls: ['./todo.component.scss'],
+  animations: [fadeAnimation]
 })
 export class TodoComponent implements OnInit {
 
@@ -25,6 +27,7 @@ export class TodoComponent implements OnInit {
     desc: false,
     date: false,
   };
+  idProp = '_id';
 
   constructor(
     private todoService: TodoService,
@@ -70,7 +73,8 @@ export class TodoComponent implements OnInit {
     }
     this.todoService.saveTodo(newTodo)
       .subscribe((res) => {
-        this.initTodoList();
+        newTodo[this.idProp] = res.id;
+        this.todoList = [...this.todoList, newTodo];
         this.newTodo = this.todoService.getDefaultTodo();
         this.step = 0;
         this.isCreateStart = false;
@@ -80,7 +84,7 @@ export class TodoComponent implements OnInit {
       });
   }
 
-  removeTodo(id: number): void {
+  removeTodo(id: string): void {
     this.dialogService.addDialog(ConfirmModalComponent, {
       title: 'Delete Todo',
       question: 'Are you sure you want to remove todo?'
@@ -88,7 +92,7 @@ export class TodoComponent implements OnInit {
       if (result) {
         this.todoService.removeTodo(id)
           .subscribe((res) => {
-            this.initTodoList();
+            this.todoList = this.todoList.filter(item => item[this.idProp] !== id);
           });
       }
     });
@@ -110,7 +114,14 @@ export class TodoComponent implements OnInit {
         if (result) {
           this.todoService.updateTodo(result)
             .subscribe((res) => {
-              this.initTodoList();
+              // this.initTodoList();
+              this.todoList.map(item => {
+                if (item[this.idProp] === result[this.idProp]) {
+                  item.title = result.title;
+                  item.description = result.description;
+                  item.date = result.date;
+                }
+              });
               this.isListSuccess = true;
             }, () => {
               this.isListSuccess = false;

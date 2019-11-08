@@ -3,12 +3,12 @@
         <div class="col-lg-7">
             <h3 class="title">Todo list</h3>
             <input [(ngModel)]="titleFilterValue" type="text" class="custom-input filter-input" placeholder="Filter todos by title">
-            <div *ngIf="isListLoaded" class="row">
-                <div *ngFor="let todo of todoList | title: titleFilterValue" class="card col-md-4">
+            <div class="row">
+                <div @fadeAnimation *ngFor="let todo of todoList | title: titleFilterValue" class="card col-md-4">
                     <div class="card-body">
                         <div class="remove-icon"><a href="#" (click)="removeTodo(todo['_id'])">x</a></div>
                         <h5 class="card-title">{{todo.title}}</h5>
-                        <p class="card-text">{{todo.description}}</p>
+                        <p class="card-text" @fadeAnimation>{{todo.description}}</p>
                         <p class="card-text todo-date">{{todo.date | date}}</p>
                         <button (click)="startUpdateTodo(todo)" class="button btn-second">Edit</button>
                     </div>
