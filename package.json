@@ -23,7 +23,7 @@
     "@angular/router": "~8.2.3",
     "@angular/service-worker": "~8.2.3",
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng2-bootstrap-modal": "^1.0.1",
     "popper": "^1.0.1",
     "rxjs": "~6.4.0",
